@@ -378,7 +378,7 @@ Merci de confirmer la disponibilité et le tarif.`
           </div>
 
           <div className="flex flex-col sm:flex-row justify-center gap-4 text-gray-400 text-sm mb-6">
-            <span>📞 +221 XX XXX XX XX</span>
+            <span>📞 +221 77 672 97 40</span>
             <span>📍 Dakar, Sénégal</span>
           </div>
 
