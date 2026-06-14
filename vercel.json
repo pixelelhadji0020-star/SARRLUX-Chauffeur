@@ -1,8 +1,6 @@
 {
+  "outputDirectory": "dist",
   "rewrites": [
-    {
-      "source": "/((?!assets|icons|manifest.json|service-worker.js|sw.js|workbox-.*|logo.*).*)",
-      "destination": "/index.html"
-    }
+    { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
