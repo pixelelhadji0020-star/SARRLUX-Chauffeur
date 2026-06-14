@@ -4,22 +4,56 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-  scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
 body {
   font-family: 'Inter', sans-serif;
-  background-color: #0b0f17;
+  background-color: #0d0d0d;
 }
 
-::-webkit-scrollbar {
-  width: 4px;
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: #0d0d0d; }
+::-webkit-scrollbar-thumb { background: #C9A97A; border-radius: 2px; }
+
+.text-shimmer {
+  background: linear-gradient(90deg, #C9A97A 0%, #F5E6C8 40%, #E2C99A 60%, #C9A97A 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 3s linear infinite;
 }
-::-webkit-scrollbar-track {
-  background: #0b0f17;
+
+.gold-line {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #C9A97A, transparent);
+  animation: shimmer 3s linear infinite;
+  background-size: 200% auto;
 }
-::-webkit-scrollbar-thumb {
-  background: #10b981;
-  border-radius: 2px;
+
+.card-hover {
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(201, 169, 122, 0.15);
+  border-color: rgba(201, 169, 122, 0.5);
+}
+
+.btn-gold {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #C9A97A, #8B6F47);
+  transition: all 0.3s ease;
+}
+.btn-gold::after {
+  content: '';
+  position: absolute;
+  top: -50%; left: -75%;
+  width: 50%; height: 200%;
+  background: rgba(255,255,255,0.15);
+  transform: skewX(-20deg);
+  transition: left 0.5s ease;
+}
+.btn-gold:hover::after { left: 125%; }
+.btn-gold:hover { box-shadow: 0 0 20px rgba(201,169,122,0.4); }

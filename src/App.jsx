@@ -6,6 +6,9 @@ import {
 
 const LOGO = '/logo sarrlux chauffeur.jpeg'
 
+const DELAYS = ['0s', '0.15s', '0.3s']
+const BADGE_DELAYS = ['0.3s', '0.4s', '0.5s']
+
 export default function App() {
   const [form, setForm] = useState({
     nom: '', telephone: '', date: '', heure: '',
@@ -69,21 +72,25 @@ Merci de confirmer la disponibilité et le tarif.`
     document.getElementById('reservation')?.scrollIntoView({ behavior: 'smooth' })
   }
 
-  const inputClass = 'bg-gray-900 border border-gray-700 focus:border-emerald-500 focus:outline-none rounded-xl px-4 py-3 text-white w-full placeholder-gray-500 transition-colors'
+  const inputClass = 'bg-[#1a1a1a] border border-gray-700 focus:border-[#C9A97A] focus:ring-1 focus:ring-[#C9A97A]/30 focus:outline-none rounded-xl px-4 py-3 text-white w-full placeholder-gray-600 transition-all duration-200'
 
   return (
-    <div className="min-h-screen bg-[#0b0f17] text-gray-50 font-sans">
+    <div className="min-h-screen bg-[#0d0d0d] text-gray-50 font-sans">
 
       {/* Header */}
-      <header className="sticky top-0 z-50 bg-[#0b0f17]/95 backdrop-blur-md border-b border-emerald-500/20">
+      <header className="sticky top-0 z-50 bg-[#0d0d0d]/95 backdrop-blur-md border-b border-[#C9A97A]/15 transition-all duration-300">
         <div className="max-w-5xl mx-auto px-4 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <img src={LOGO} alt="SarrLux Chauffeur" className="h-9 w-9 rounded-full object-cover" />
-            <span className="text-emerald-400 font-bold text-lg tracking-tight">SarrLux Chauffeur</span>
+            <img
+              src={LOGO}
+              alt="SarrLux Chauffeur"
+              className="h-9 w-9 rounded-full object-cover hover:opacity-80 transition-opacity duration-300"
+            />
+            <span className="text-[#C9A97A] font-bold text-lg tracking-tight">SarrLux Chauffeur</span>
           </div>
           <button
             onClick={openCalendly}
-            className="bg-emerald-600 hover:bg-emerald-500 text-white text-sm px-4 py-2 rounded-full font-medium transition-colors"
+            className="btn-gold rounded-full px-5 py-2 text-[#0d0d0d] font-semibold text-sm"
           >
             Réserver
           </button>
@@ -91,25 +98,32 @@ Merci de confirmer la disponibilité et le tarif.`
       </header>
 
       {/* Hero */}
-      <section className="bg-gradient-to-b from-[#030712] via-[#0b0f17] to-[#030712] min-h-screen flex flex-col items-center justify-center px-6 py-20">
+      <section className="bg-gradient-to-b from-[#0d0d0d] via-[#111111] to-[#0d0d0d] min-h-screen flex flex-col items-center justify-center px-6 py-20">
         <img
           src={LOGO}
           alt="SarrLux Chauffeur"
-          className="h-28 w-28 rounded-2xl object-cover mb-8 shadow-2xl shadow-emerald-500/20 border border-emerald-500/20"
+          className="h-28 w-28 rounded-2xl object-cover mb-8 shadow-2xl border border-[#C9A97A]/20 animate-carDrive"
+          style={{ boxShadow: '0 0 40px rgba(201,169,122,0.15)' }}
         />
-        <h1 className="text-4xl font-bold text-white text-center leading-tight mb-4">
-          Votre Chauffeur <span className="text-emerald-400">Privé</span><br />à Dakar
+
+        <h1 className="text-4xl font-bold text-white text-center leading-tight mb-4 animate-fadeIn">
+          Votre Chauffeur <span className="text-shimmer">Privé</span><br />à Dakar
         </h1>
-        <p className="text-gray-400 text-center text-base mb-8 max-w-sm">
+
+        <p
+          className="text-gray-400 text-center text-base mb-8 max-w-sm animate-fadeInUp"
+          style={{ animationDelay: '0.2s', opacity: 0 }}
+        >
           Confort, ponctualité et discrétion — à votre service 24h/24
         </p>
 
         {/* Badges */}
         <div className="flex flex-wrap justify-center gap-2 mb-10">
-          {['🏙️ Dakar', '✈️ AIBD', '🗺️ Hors Dakar'].map((badge) => (
+          {['🏙️ Dakar', '✈️ AIBD', '🗺️ Hors Dakar'].map((badge, i) => (
             <span
               key={badge}
-              className="bg-gray-900 border border-emerald-500/30 text-gray-300 text-xs px-3 py-1 rounded-full"
+              className="bg-[#1a1a1a] border border-[#C9A97A]/20 text-gray-300 text-xs px-3 py-1 rounded-full animate-fadeInUp"
+              style={{ animationDelay: BADGE_DELAYS[i], opacity: 0 }}
             >
               {badge}
             </span>
@@ -117,16 +131,19 @@ Merci de confirmer la disponibilité et le tarif.`
         </div>
 
         {/* CTAs */}
-        <div className="flex flex-col sm:flex-row gap-3 w-full max-w-sm">
+        <div
+          className="flex flex-col sm:flex-row gap-3 w-full max-w-sm animate-fadeInUp"
+          style={{ animationDelay: '0.6s', opacity: 0 }}
+        >
           <button
             onClick={openCalendly}
-            className="flex-1 bg-emerald-600 hover:bg-emerald-500 text-white font-semibold py-3 px-6 rounded-2xl transition-colors text-center"
+            className="btn-gold flex-1 text-[#0d0d0d] font-semibold py-3 px-6 rounded-2xl text-center"
           >
             Planifier un trajet
           </button>
           <button
             onClick={scrollToForm}
-            className="flex-1 border border-emerald-500 text-emerald-400 hover:bg-emerald-500/10 font-semibold py-3 px-6 rounded-2xl transition-colors text-center"
+            className="flex-1 border border-[#C9A97A]/50 text-[#C9A97A] hover:bg-[#C9A97A]/10 font-semibold py-3 px-6 rounded-2xl transition-colors text-center"
           >
             Réserver via WhatsApp
           </button>
@@ -134,9 +151,10 @@ Merci de confirmer la disponibilité et le tarif.`
       </section>
 
       {/* Services */}
-      <section className="bg-[#0b0f17] py-20 px-4">
+      <section className="bg-[#0d0d0d] py-20 px-4">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-2xl font-bold text-white text-center mb-2">Nos Services</h2>
+          <div className="gold-line w-16 mx-auto mb-3" />
           <p className="text-gray-400 text-sm text-center mb-10">Des solutions adaptées à chaque besoin de déplacement</p>
 
           <div className="flex flex-col gap-4 md:grid md:grid-cols-3">
@@ -162,17 +180,19 @@ Merci de confirmer la disponibilité et le tarif.`
                 desc: 'Excursions régionales & longues distances',
                 details: ['Tarifs négociés à l\'avance', 'Confort et sécurité premium'],
               },
-            ].map((service) => (
+            ].map((service, i) => (
               <div
                 key={service.title}
-                className="relative bg-gray-900 border border-emerald-500/10 hover:border-emerald-500/40 rounded-2xl p-6 transition-all"
+                className="relative bg-[#1a1a1a] border border-[#C9A97A]/10 rounded-2xl p-6 card-hover animate-fadeInUp"
+                style={{ animationDelay: DELAYS[i], opacity: 0 }}
               >
-                <span className="absolute top-4 right-4 text-amber-400 text-xs border border-amber-400/30 rounded-full px-2 py-0.5">
+                <span className="absolute top-4 right-4 text-[#C9A97A] text-xs border border-[#C9A97A]/30 rounded-full px-2 py-0.5">
                   {service.badge}
                 </span>
-                <div className="bg-emerald-500/10 rounded-xl p-3 w-fit text-emerald-400 mb-4">
+                <div className="bg-[#C9A97A]/10 rounded-xl p-3 w-fit text-[#C9A97A] mb-3 animate-glowPulse">
                   {service.icon}
                 </div>
+                <div className="gold-line w-8 my-2" />
                 <h3 className="text-white font-semibold text-lg mb-1">{service.title}</h3>
                 <p className="text-gray-400 text-sm mb-3">{service.desc}</p>
                 <ul className="text-gray-500 text-xs space-y-1 mb-4">
@@ -181,7 +201,7 @@ Merci de confirmer la disponibilité et le tarif.`
                   ))}
                 </ul>
                 <div className="flex justify-end">
-                  <ChevronRight className="text-emerald-500" size={20} />
+                  <ChevronRight className="text-[#C9A97A]" size={20} />
                 </div>
               </div>
             ))}
@@ -190,9 +210,10 @@ Merci de confirmer la disponibilité et le tarif.`
       </section>
 
       {/* Formulaire de réservation */}
-      <section id="reservation" className="bg-[#030712] py-20 px-4">
+      <section id="reservation" className="bg-[#111111] py-20 px-4">
         <div className="max-w-2xl mx-auto">
           <h2 className="text-2xl font-bold text-white text-center mb-2">Demander une réservation</h2>
+          <div className="gold-line w-16 mx-auto mb-3" />
           <p className="text-gray-400 text-sm text-center mb-10">
             Remplissez le formulaire, votre demande sera envoyée directement via WhatsApp
           </p>
@@ -306,7 +327,7 @@ Merci de confirmer la disponibilité et le tarif.`
 
             <button
               type="submit"
-              className="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-4 rounded-2xl text-base transition-colors mt-2"
+              className="btn-gold w-full text-[#0d0d0d] font-bold py-4 rounded-2xl text-base mt-2"
             >
               📲 Envoyer ma demande via WhatsApp
             </button>
@@ -315,9 +336,10 @@ Merci de confirmer la disponibilité et le tarif.`
       </section>
 
       {/* Comment ça marche */}
-      <section className="bg-[#0b0f17] py-20 px-4">
+      <section className="bg-[#0d0d0d] py-20 px-4">
         <div className="max-w-3xl mx-auto">
           <h2 className="text-2xl font-bold text-white text-center mb-2">Comment ça marche ?</h2>
+          <div className="gold-line w-16 mx-auto mb-3" />
           <p className="text-gray-400 text-sm text-center mb-12">En 3 étapes simples</p>
 
           <div className="flex flex-col md:flex-row items-start md:items-center gap-0">
@@ -341,19 +363,25 @@ Merci de confirmer la disponibilité et le tarif.`
                 desc: 'Le chauffeur confirme rapidement disponibilité et tarif',
               },
             ].map((step, i) => (
-              <div key={step.num} className="flex md:flex-col items-start md:items-center gap-4 flex-1 relative">
+              <div
+                key={step.num}
+                className="flex md:flex-col items-start md:items-center gap-4 flex-1 relative animate-slideInLeft"
+                style={{ animationDelay: `${i * 0.2}s`, opacity: 0 }}
+              >
                 {/* Connecteur horizontal (desktop) */}
                 {i < 2 && (
-                  <div className="hidden md:block absolute left-1/2 top-8 w-full border-t border-dashed border-emerald-500/30" />
+                  <div className="hidden md:block absolute left-1/2 top-8 w-full">
+                    <div className="gold-line" />
+                  </div>
                 )}
                 {/* Connecteur vertical (mobile) */}
                 {i < 2 && (
-                  <div className="md:hidden absolute left-8 top-16 h-8 border-l border-dashed border-emerald-500/30" />
+                  <div className="md:hidden absolute left-8 top-16 h-8 border-l border-dashed border-[#C9A97A]/30" />
                 )}
 
-                <div className="relative z-10 bg-emerald-500/10 border border-emerald-500/30 rounded-2xl p-4 text-emerald-400 shrink-0">
+                <div className="relative z-10 bg-[#C9A97A]/10 border border-[#C9A97A]/30 rounded-2xl p-4 text-[#C9A97A] shrink-0 animate-glowPulse">
                   {step.icon}
-                  <span className="absolute -top-2 -right-2 bg-emerald-600 text-white text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center">
+                  <span className="absolute -top-2 -right-2 border-2 border-[#C9A97A] text-[#C9A97A] bg-[#0d0d0d] text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center">
                     {step.num}
                   </span>
                 </div>
@@ -369,11 +397,16 @@ Merci de confirmer la disponibilité et le tarif.`
       </section>
 
       {/* Footer */}
-      <footer className="bg-[#030712] border-t border-emerald-500/10 py-10 px-4">
+      <footer className="bg-[#0d0d0d] border-t border-[#C9A97A]/10 py-10 px-4">
         <div className="max-w-5xl mx-auto">
+          <div className="gold-line w-full mb-6" />
           <div className="flex flex-col items-center mb-6">
-            <img src={LOGO} alt="SarrLux" className="h-12 w-12 rounded-full object-cover mb-3 border border-emerald-500/20" />
-            <span className="text-emerald-400 font-bold text-lg">SarrLux Chauffeur</span>
+            <img
+              src={LOGO}
+              alt="SarrLux"
+              className="h-12 w-12 rounded-full object-cover mb-3 border border-[#C9A97A]/20 hover:opacity-70 transition-opacity"
+            />
+            <span className="text-[#C9A97A] font-bold text-lg">SarrLux Chauffeur</span>
             <p className="text-gray-500 text-sm mt-1">Votre confort, notre priorité.</p>
           </div>
 
@@ -382,10 +415,10 @@ Merci de confirmer la disponibilité et le tarif.`
             <span>📍 Dakar, Sénégal</span>
           </div>
 
-          <div className="border-t border-emerald-500/10 pt-4 flex justify-between items-center">
+          <div className="border-t border-[#C9A97A]/10 pt-4 flex justify-between items-center">
             <a
               href="/admin"
-              className="text-[#030712] hover:text-emerald-500/20 text-[10px] select-none transition-colors"
+              className="text-[#0d0d0d] hover:text-[#C9A97A]/20 text-[10px] select-none transition-colors"
             >
               admin
             </a>
@@ -396,7 +429,7 @@ Merci de confirmer la disponibilité et le tarif.`
 
       {/* Bannière PWA */}
       {showPwaBanner && (
-        <div className="fixed bottom-0 left-0 right-0 z-50 bg-[#030712] border-t border-emerald-500/30 px-4 py-4">
+        <div className="fixed bottom-0 left-0 right-0 z-50 bg-[#0d0d0d] border-t border-[#C9A97A]/30 px-4 py-4 animate-fadeInUp">
           <div className="max-w-2xl mx-auto flex items-center justify-between gap-3">
             <p className="text-gray-300 text-sm flex-1">
               📲 Ajoutez SarrLux à votre écran d'accueil pour vos prochains trajets
@@ -404,13 +437,13 @@ Merci de confirmer la disponibilité et le tarif.`
             <div className="flex gap-2 shrink-0">
               <button
                 onClick={handleInstall}
-                className="bg-emerald-600 hover:bg-emerald-500 text-white text-sm font-semibold px-4 py-2 rounded-xl transition-colors"
+                className="btn-gold px-4 py-2 rounded-full text-[#0d0d0d] font-semibold text-sm"
               >
                 Installer
               </button>
               <button
                 onClick={() => setShowPwaBanner(false)}
-                className="text-gray-400 hover:text-white text-lg leading-none px-2"
+                className="text-gray-400 hover:text-white text-lg leading-none px-2 transition-colors"
               >
                 ✕
               </button>
